@@ -1,0 +1,145 @@
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>搜索结果</title>
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/result.css" rel="stylesheet" type="text/css" />
+</head>
+{% block page_content %}
+<body>
+<div id="container">
+	<div id="hd" class="ue-clear">
+    	<!--<div class="logo"></div>-->
+          <div class="label">
+            <img src='../static/img/716search1.png' width="177px"; height="45px"; style="position:relative; left:0px; top:40px; "/>
+          </div>
+        <div class="inputArea">
+        	<form method="post">
+                    <input type="text" name="Name" class="searchInput" value={{novelsName}}>
+                    <input type="submit"  value="&nbsp" class="searchButton" />
+            </form>
+        </div>
+    </div>
+	<div id="bd" class="ue-clear">
+        <div id="main">
+            <div class="resultArea">
+                <div class="resultList">
+                    <ul>
+                    {% for i in URL %}
+                	<li><div class="resultItem">
+                    	<div class="itemHead">
+                        	<a href="/"  target="_blank" class="title">{{ i[1] }}</a>
+                            <span class="divsion">-</span>
+                            <span class="fileType">
+                            	<span class="label">作者：</span>
+                                <span class="value">{{ i[2] }}</span>
+                            </span>
+                            <span class="dependValue">
+                            	<span class="label">相关度：</span>
+                                <span class="value">{{ i[0] }}</span>
+                            </span>
+                        </div>
+                        <div class="itemBody">
+                        	{{ i[6] }}
+                        </div>
+                        <div class="itemFoot">
+                        	<span class="info">
+                            	<label>类别：</label>
+                                <span class="value">{{ i[3] }}</span>
+                            </span>
+                            <span class="info">
+                            	<label>连载状态：</label>
+                                <span class="value">{{ i[4] }}</span>
+                            </span>
+                            <span class="info">
+                            	<label>字数：</label>
+                                <span class="value">{{ i[5] }}</span>
+                            </span>
+                        </div>
+                    <!--</div>-->
+                    </div></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="inputArea searchInResult">
+                    <form method="post">
+                    <input type="text" name="Name" class="searchInput" value="请输入关键词" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search Template';}"/>
+                    <input type="submit"  value="&nbsp" class="searchButton" />
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+  </div>
+</div>
+</body>
+
+
+<script type="text/javascript" src="../static/js/jquery.js"></script>
+<script type="text/javascript" src="../static/js/global.js"></script>
+<script type="text/javascript" src="../static/js/pagination.js"></script>
+<script type="text/javascript">
+	$('.searchList').on('click', '.searchItem', function(){
+		$('.searchList .searchItem').removeClass('current');
+		$(this).addClass('current');
+	});
+
+
+
+	$.each($('.subfieldContext'), function(i, item){
+		$(this).find('li:gt(2)').hide().end().find('li:last').show();
+	});
+
+	$('.subfieldContext .more').click(function(e){
+		var $more = $(this).parent('.subfieldContext').find('.more');
+		if($more.hasClass('show')){
+
+			if($(this).hasClass('define')){
+				$(this).parent('.subfieldContext').find('.more').removeClass('show').find('.text').text('自定义');
+			}else{
+				$(this).parent('.subfieldContext').find('.more').removeClass('show').find('.text').text('更多');
+			}
+			$(this).parent('.subfieldContext').find('li:gt(2)').hide().end().find('li:last').show();
+	    }else{
+			$(this).parent('.subfieldContext').find('.more').addClass('show').find('.text').text('收起');
+			$(this).parent('.subfieldContext').find('li:gt(2)').show();
+		}
+
+	});
+
+	$('.sideBarShowHide a').click(function(e) {
+		if($('#main').hasClass('sideBarHide')){
+			$('#main').removeClass('sideBarHide');
+			$('#container').removeClass('sideBarHide');
+		}else{
+			$('#main').addClass('sideBarHide');
+			$('#container').addClass('sideBarHide');
+		}
+
+    });
+
+	//分页
+	$(".pagination").pagination(500, {
+		current_page :0, //当前页码
+		items_per_page :9,
+		display_msg :true,
+		callback :pageselectCallback
+	});
+	function pageselectCallback(page_id, jq) {
+		alert("当前页id(由0开始)：" + page_id + "，\n每页显示：" + this.items_per_page + "条数据");
+	}
+
+	setHeight();
+	$(window).resize(function(){
+		setHeight();
+	});
+
+	function setHeight(){
+		if($('#container').outerHeight() < $(window).height()){
+			$('#container').height($(window).height()-33);
+		}
+	}
+</script>
+</html>
+{% endblock %}

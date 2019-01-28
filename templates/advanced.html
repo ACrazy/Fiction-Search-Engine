@@ -1,0 +1,11 @@
+{% block title %}首页{% endblock %}
+
+{% block page_content %}
+
+
+                <ul>
+                    {% for i in URL %}
+                	<li>{{i[0]}}</li>
+                    {% endfor %}
+                </ul>
+{% endblock %}

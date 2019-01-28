@@ -1,0 +1,105 @@
+﻿<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>716网络小说搜索</title>
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="container">
+	<div id="bd">
+        <div id="main">
+        	<!--<h1 class="title">-->
+            	<!--&lt;!&ndash;<div class="logo large"></div>&ndash;&gt;-->
+            <!--<div class="logo large">-->
+            <!--</div>-->
+                 <div class = "label">
+                     <img src='../static/img/716search.png' width="329px"; height="90px"; style="position:relative; left:0px; top:-20px; "/>
+                 </div>
+          <!--</h1>-->
+          <!--<div class="logo large"></div>-->
+          <!--<img src="/img/716search.png" width="1000px"; height="200px"; style="position:absolute; left:1000px; top:50px; "/>-->
+            <!--<div class="nav ue-clear">-->
+            	<!--<ul class="searchList">-->
+                    <!--<li class="searchItem current">资讯</li>-->
+                    <!--<li class="searchItem">设计</li>-->
+                    <!--<li class="searchItem">网页</li>-->
+                    <!--<li class="searchItem">知道</li>-->
+                    <!--<li class="searchItem">音乐</li>-->
+                    <!--<li class="searchItem">图片</li>-->
+                    <!--<li class="searchItem">视频</li>-->
+                    <!--<li class="searchItem">地图</li>-->
+                    <!--<li class="searchItem">百科</li>-->
+                    <!--<li class="searchItem">文库</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="inputArea">
+                <form method="post">
+                    <input type="text" name="Name" class="searchInput" value="请输入关键词" onfocus="this.value = ''"/>
+                    <input type="submit"  value="&nbsp" class="searchButton" />
+                </form>
+                <!--<a class="advanced" href="advanced.html">高级搜索</a>-->
+                <ul class="dataList">
+                	  <li>斗罗大陆</li>
+                    <li>三体</li>
+                    <li>黑暗森林</li>
+                    <li>斗破苍穹</li>
+                    <li>龙族</li>
+                </ul>
+            </div>
+
+            <div class="historyArea">
+            	<p class="history">
+                	<label>热门搜索：</label>
+                    <a href="javascript:;">三体</a>
+                    <a href="javascript:;">马克思主义</a>
+                    <a href="javascript:;">海贼王</a>
+                    <a href="javascript:;">湖人总冠军</a>
+                    <a href="javascript:;">德国墨西哥</a>
+                    <a href="javascript:;">唐家三少</a>
+                    <a href="javascript:;">龙族</a>
+                </p>
+                <!--<p class="history">-->
+                	<!--<label>我的搜索：</label>-->
+                    <!--<a href="javascript:;">专注界面设计网站</a>-->
+                    <!--<a href="javascript:;">用户体验</a>-->
+                    <!--<a href="javascript:;">互联网</a>-->
+                    <!--<a href="javascript:;">资费套餐</a>-->
+                <!--</p>-->
+            </div>
+        </div><!-- End of main -->
+    </div><!--End of bd-->
+
+
+    <!--<div class="foot">-->
+    	<!--<div class="wrap">-->
+            <!--<div class="copyright">Copyright &copy;uimaker.com 版权所有  E-mail:admin@uimaker.com</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery.js"></script>
+<script type="text/javascript" src="../static/js/global.js"></script>
+<script type="text/javascript">
+	$('.searchList').on('click', '.searchItem', function(){
+		$('.searchList .searchItem').removeClass('current');
+		$(this).addClass('current');
+	});
+
+	// 联想下拉显示隐藏
+	$('.searchInput').on('focus', function(){
+		$('.dataList').show()
+    });
+
+	// 联想下拉点击
+	$('.dataList').on('click', 'li', function(){
+		var text = $(this).text();
+		$('.searchInput').val(text);
+		$('.dataList').hide()
+	});
+
+	hideElement($('.dataList'), $('.searchInput'));
+</script>
+</html>

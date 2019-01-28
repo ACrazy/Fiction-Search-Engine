@@ -1,0 +1,31 @@
+{% block title %}首页{% endblock %}
+
+{% block page_content %}
+    <table class="table table-bordered">
+    <tr>
+        <th>NO.</th>
+        <th>cosine</th>
+        <th>title</th>
+        <th>author</th>
+        <th>geners</th>
+        <th>state</th>
+        <th>counts</th>
+        <th>content</th>
+        <th>img</th>
+    </tr>
+        {% for i in URL %}
+            <tr>
+                <td>{{ i[0] }}</td>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+                <td>{{ i[4] }}</td>
+                <td>{{ i[5] }}</td>
+                <td>{{ i[6] }}</td>
+                <td>{{ i[7] }}</td>
+                <td>{{ i[8] }}</td>
+            </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
